@@ -1,0 +1,19 @@
+import libs = libssl%lib{ssl}
+
+lib{hiredis}: \
+    $src_upstream/{c h}{alloc async dict hiredis net read sds sockcompat} \
+    $src_upstream/c{ssl} \
+    $src_upstream/h{hiredis_ssl sdsalloc async_private win32 adapters/*} \
+    $libs
+
+c.poptions =+ "-I$src_upstream"
+
+lib{hiredis}:
+{
+  c.export.poptions = "-I$src_upstream"
+}
+
+../upstream/
+{
+  h{*}: install.subdirs = true
+}

@@ -1,0 +1,6 @@
+$out_root/
+{
+  include hiredis/
+}
+
+export $out_root/hiredis/$import.target
