@@ -1,19 +1,40 @@
 import libs = libssl%lib{ssl}
 
-lib{hiredis}: \
-    $src_upstream/{c h}{alloc async dict hiredis net read sds sockcompat} \
-    $src_upstream/c{ssl} \
-    $src_upstream/h{hiredis_ssl sdsalloc async_private win32 adapters/*} \
+./: lib{hiredis}: \
+    {c h}{alloc async dict hiredis net read sds sockcompat} \
+    h{sdsalloc async_private fmacros win32 adapters/*} \
+    $libs
+./: lib{hiredis-ssl}: \
+    c{ssl} \
+    h{hiredis_ssl} \
+    lib{hiredis} \
     $libs
 
-c.poptions =+ "-I$src_upstream"
+c.poptions =+ "-I$src_base"
+
+if ($c.target.class == 'windows')
+{
+    c.poptions =+ "-D_CRT_SECURE_NO_WARNINGS" "-DWIN32_LEAN_AND_MEAN"
+}
+
+switch $c.target.class, $c.target.system
+{
+    case 'windows', 'mingw32'
+    {
+        c.libs =+ "-lws2_32"
+    }
+    case 'windows'
+    {
+        c.libs =+ "ws2_32.lib"
+    }
+}
 
 lib{hiredis}:
 {
-  c.export.poptions = "-I$src_upstream"
+  c.export.poptions = "-I$src_base"
 }
 
-../upstream/
+lib{hiredis-ssl}:
 {
-  h{*}: install.subdirs = true
+  c.export.libs =+ lib{hiredis}
 }
