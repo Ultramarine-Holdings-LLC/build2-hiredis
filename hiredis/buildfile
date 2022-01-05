@@ -5,7 +5,7 @@ import libs = libssl%lib{ssl}
 lib{hiredis}: libul{hiredis}: \
     {c h}{alloc async dict hiredis net read sds sockcompat} \
     h{sdsalloc async_private fmacros win32 adapters/*}
-lib{hiredis}: def{hiredis}: include = ($cxx.target.system == 'win32-msvc')
+lib{hiredis}: def{hiredis}: include = ($cxx.target.class == 'windows')
 def{hiredis}: libul{hiredis}
 
 lib{hiredis-ssl}: libul{hiredis-ssl}: \
@@ -13,7 +13,7 @@ lib{hiredis-ssl}: libul{hiredis-ssl}: \
     h{hiredis_ssl} \
     lib{hiredis} \
     $libs
-lib{hiredis-ssl}: def{hiredis-ssl}: include = ($cxx.target.system == 'win32-msvc')
+lib{hiredis-ssl}: def{hiredis-ssl}: include = ($cxx.target.class == 'windows')
 def{hiredis-ssl}: libul{hiredis-ssl}
 
 if ($cxx.target.system == 'mingw32')
