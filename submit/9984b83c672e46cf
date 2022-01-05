@@ -1,0 +1,5 @@
+: 1
+name: hiredis
+version: 1.0.2
+summary: Minimalistic C client for Redis >= 1.2
+license: BSD-3-Clause
