@@ -1,9 +1,12 @@
 : 1
 name: hiredis
 version: 1.0.2-a.0.z
-summary: hiredis C library
+summary:  Minimalistic C client for Redis >= 1.2
 license: BSD-3-Clause
-url: https://github.com/redis/hiredis
+description-file: upstream/README.md
+url: https://redis.com/lp/hiredis/
+src-url: https://github.com/redis/hiredis
+doc-url: https://github.com/redis/hiredis/blob/master/README.md
 depends: * build2 >= 0.14.0
 depends: * bpkg >= 0.14.0
 depends: libssl ^1.1.1
