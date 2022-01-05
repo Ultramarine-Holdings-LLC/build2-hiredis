@@ -2,8 +2,7 @@ import libs = libssl%lib{ssl}
 
 ./: lib{hiredis}: \
     {c h}{alloc async dict hiredis net read sds sockcompat} \
-    h{sdsalloc async_private fmacros win32 adapters/*} \
-    $libs
+    h{sdsalloc async_private fmacros win32 adapters/*}
 ./: lib{hiredis-ssl}: \
     c{ssl} \
     h{hiredis_ssl} \
