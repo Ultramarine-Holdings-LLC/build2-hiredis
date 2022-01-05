@@ -3,7 +3,7 @@ name: hiredis
 version: 1.0.2-a.0.z
 summary:  Minimalistic C client for Redis >= 1.2
 license: BSD-3-Clause
-description-file: upstream/README.md
+description-file: README.md
 url: https://redis.com/lp/hiredis/
 src-url: https://github.com/redis/hiredis
 doc-url: https://github.com/redis/hiredis/blob/master/README.md
