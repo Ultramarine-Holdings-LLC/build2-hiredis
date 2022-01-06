@@ -1,5 +1,5 @@
-#include "fmacros.h"
-#include "sockcompat.h"
+#include <hiredis/fmacros.h>
+#include <hiredis/sockcompat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,13 +12,13 @@
 #include <errno.h>
 #include <limits.h>
 
-#include "hiredis.h"
-#include "async.h"
+#include <hiredis/hiredis.h>
+#include <hiredis/async.h>
 #ifdef HIREDIS_TEST_SSL
-#include "hiredis_ssl.h"
+#include <hiredis/hiredis_ssl.h>
 #endif
-#include "net.h"
-#include "win32.h"
+#include <hiredis/net.h>
+#include <hiredis/win32.h>
 
 enum connection_type {
     CONN_TCP,

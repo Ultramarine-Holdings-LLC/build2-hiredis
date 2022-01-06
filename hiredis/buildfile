@@ -19,7 +19,7 @@ def{hiredis-ssl}: libul{hiredis-ssl}
 if ($c.target.system == 'mingw32')
   c.loptions += -Wl,--export-all-symbols
 
-c.poptions =+ "-I$src_base"
+c.poptions =+ "-I$src_root"
 
 if ($c.target.class == 'windows')
 {
@@ -40,10 +40,16 @@ switch $c.target.class, $c.target.system
 
 lib{hiredis}:
 {
-  c.export.poptions = "-I$src_base"
+  c.export.poptions = "-I$src_root"
 }
 
 lib{hiredis-ssl}:
 {
   c.export.libs =+ lib{hiredis}
+}
+
+h{*}:
+{
+    install = include/hiredis/
+    install.subdirs = true
 }
