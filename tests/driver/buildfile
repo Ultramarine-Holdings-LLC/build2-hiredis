@@ -4,8 +4,8 @@ import libs_ssl = hiredis%lib{hiredis-ssl}
 ./: exe{driver}: obje{test} $libs
 obje{test}: c{test} $libs
 
-./: exe{driver-ssl}: obje{test} $libs_ssl
-obje{test}: c{test} $libs
+./: exe{driver-ssl}: obje{test-ssl} $libs_ssl
+obje{test-ssl}: c{test} $libs
 {
     c.poptions = "-DHIREDIS_TEST_SSL=1"
 }
